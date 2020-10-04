@@ -20,8 +20,8 @@ public class MovingBackground : MonoBehaviour
     void Update()
     {
 
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
+        float moveX = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
+        float moveY = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
 
         offset = new Vector2(moveX, moveY).normalized;
 

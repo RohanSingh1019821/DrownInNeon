@@ -7,8 +7,8 @@ public class RandObjectSpawn : MonoBehaviour
 {
     public GameObject[] gameObjects;
     public Transform player;
-    private float spawnRangeX = 10;
-    private float spawnRangeY = 10;
+    private int spawnRangeX = 10;
+    private int spawnRangeY = 10;
 
     GameObject obj;
 
