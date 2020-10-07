@@ -7,8 +7,9 @@ public class RandObjectSpawn : MonoBehaviour
 {
     public GameObject[] gameObjects;
     public Transform player;
-    private int spawnRangeX = 10;
-    private int spawnRangeY = 10;
+    public Transform playerTransform;
+    private int spawnRangeX = 20;
+    private int spawnRangeY = 20;
 
     GameObject obj;
 
@@ -21,7 +22,7 @@ public class RandObjectSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        playerTransform = player;
     }
 
     void SpawnObject()
@@ -29,9 +30,9 @@ public class RandObjectSpawn : MonoBehaviour
         int objectIndex = Random.Range(0, gameObjects.Length);
         Vector3 spawnPos = new Vector2(Random.Range(-spawnRangeX, spawnRangeX), Random.Range(-spawnRangeY, spawnRangeY));
 
-        obj = Instantiate(gameObjects[objectIndex], player.position + spawnPos, gameObjects[objectIndex].transform.rotation);
+        obj = Instantiate(gameObjects[objectIndex], playerTransform.position + spawnPos, gameObjects[objectIndex].transform.rotation);
 
-        Destroy(obj, 10f);
+        Destroy(obj, 8f);
 
     }
 
