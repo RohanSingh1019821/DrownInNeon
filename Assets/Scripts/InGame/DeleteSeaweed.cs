@@ -13,7 +13,12 @@ public class DeleteSeaweed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Destroy(collision.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
