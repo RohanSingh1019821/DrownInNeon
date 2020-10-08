@@ -9,7 +9,7 @@ public class animCharController : MonoBehaviour
 
     [SerializeField] float moveSpeed = 2f;
 
-    [SerializeField] float bulletSpeed = 200f;
+    [SerializeField] float bulletSpeed = 100f;
 
     Animator anim;
 
@@ -28,7 +28,7 @@ public class animCharController : MonoBehaviour
     void Update()
     {
         Move();
-        Fire();
+        //Fire();
         Rotate();
     }
 
@@ -41,19 +41,24 @@ public class animCharController : MonoBehaviour
             dirY * moveSpeed * Time.deltaTime + transform.position.y);
     }
 
-    private void Fire()
+    public void Fire()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            //var firedBullet = Instantiate(bullet, gun.position, gun.rotation);
-            //firedBullet.AddForce(gun.up * bulletSpeed);
+		//      if (Input.GetButtonDown("Fire1"))
+		//      {
+		//          //var firedBullet = Instantiate(bullet, gun.position, gun.rotation);
+		//          //firedBullet.AddForce(gun.up * bulletSpeed);
 
-			GameObject bullet = Instantiate(bulletPrefab, gun.position, gun.rotation);
-			Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-			rb.AddForce(gun.up * bulletSpeed, ForceMode2D.Impulse);
-			Destroy(bullet, 2f);
-		}
-    }
+		//	GameObject bullet = Instantiate(bulletPrefab, gun.position, gun.rotation);
+		//	Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+		//	rb.AddForce(gun.up * bulletSpeed, ForceMode2D.Impulse);
+		//	Destroy(bullet, 2f);
+		//}
+
+		GameObject bullet = Instantiate(bulletPrefab, gun.position, gun.rotation);
+		Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+		rb.AddForce(gun.up * bulletSpeed, ForceMode2D.Impulse);
+		Destroy(bullet, 2f);
+	}
 
 	void Rotate()
 	{
