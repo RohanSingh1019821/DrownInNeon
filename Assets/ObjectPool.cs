@@ -15,10 +15,6 @@ public class ObjectPool : MonoBehaviour
     public int flyerAmount = 20;
     private List<GameObject> flyers;
 
-    public GameObject ringPrefab;
-    public int ringAmount = 20;
-    private List<GameObject> rings;
-
     public GameObject bulletPrefab;
     public int bulletAmount = 20;
     private List<GameObject> bullets;
@@ -50,16 +46,6 @@ public class ObjectPool : MonoBehaviour
             flyers.Add(prefabInstance);
         }
 
-        rings = new List<GameObject>(ringAmount);
-        for (int i = 0; i < ringAmount; i++)
-        {
-            GameObject prefabInstance = Instantiate(ringPrefab);
-            prefabInstance.transform.SetParent(transform);
-            prefabInstance.SetActive(false);
-
-            rings.Add(prefabInstance);
-        }
-
         bullets = new List<GameObject>(bulletAmount);
         for (int i = 0; i < bulletAmount; i++)
         {
@@ -87,7 +73,6 @@ public class ObjectPool : MonoBehaviour
         {
             if (!crab.activeInHierarchy)
             {
-                print("crab spawned at " + spawnPos);
                 crab.transform.position = spawnPos;
                 crab.SetActive(true);
                 return crab;
@@ -105,21 +90,6 @@ public class ObjectPool : MonoBehaviour
                 flyer.transform.position = spawnPos;
                 flyer.SetActive(true);
                 return flyer;
-            }
-        }
-        return null;
-    }
-
-    public GameObject GetRing(Transform spawnPos)
-    {
-        foreach (GameObject ring in rings)
-        {
-            if (!ring.activeInHierarchy)
-            {
-                ring.transform.position = spawnPos.position;
-                ring.transform.rotation = spawnPos.rotation;
-                ring.SetActive(true);
-                return ring;
             }
         }
         return null;

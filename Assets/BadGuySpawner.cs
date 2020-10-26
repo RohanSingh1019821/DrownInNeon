@@ -5,20 +5,49 @@ using UnityEngine;
 public class BadGuySpawner : MonoBehaviour
 {
     private float time = 0.0f;
-    public float crabSpawnInterval = 1f;
-    public float flyerSpawnInterval = 1f;
 
-    public float ScreenDist = 10;
+    private float timer = 0.0f;
+    private float crabSpawnInterval = 8f;
+    private float flyerSpawnInterval = 8f;
+
+    public float ScreenDist = 9;
     public float distVariation = 5;
 
     public Camera cam;
 
+    public Vector2 bounds = new Vector2(50, 50); 
+
     void Update()
     {
+        timer += Time.deltaTime;
+        if (timer >= 24.0f)
+        {
+            crabSpawnInterval -= 0.4f;
+            flyerSpawnInterval -= 0.4f;
+        }
+
+
+        if (flyerSpawnInterval <= 0.2f)
+        {
+            flyerSpawnInterval = 0.2f;
+        }
+
+        if (crabSpawnInterval <= 0.2f)
+        {
+            crabSpawnInterval = 0.2f;
+        }
+
         time += Time.deltaTime;
         if (time >= crabSpawnInterval)
         {
             SpawnCrab();
+            time = 0.0f;
+        }
+
+        time += Time.deltaTime;
+        if (time >= flyerSpawnInterval)
+        {
+            SpawnFlyer();
             time = 0.0f;
         }
     }
@@ -30,7 +59,6 @@ public class BadGuySpawner : MonoBehaviour
 
         float camHeight = cam.orthographicSize;
         float camWidth = camHeight * cam.aspect;
-
 
         int edge = Random.Range(1, 5);
         
@@ -56,8 +84,14 @@ public class BadGuySpawner : MonoBehaviour
         }
 
         Vector3 pos = new Vector3(x, y, 0);
+        if (Mathf.Abs(pos.x) < bounds.x)
+        {
+            if (Mathf.Abs(pos.y) < bounds.y)
+            {
+                GameObject crabObject = ObjectPool.TInstance.GetCrab(pos);
+            }
+        }
 
-        GameObject crabObject = ObjectPool.TInstance.GetCrab(pos);
     }
 
     public void SpawnFlyer()
@@ -93,7 +127,12 @@ public class BadGuySpawner : MonoBehaviour
         }
 
         Vector3 pos = new Vector3(x, y, 0);
-
-        GameObject flyerObject = ObjectPool.TInstance.GetFlyer(pos);
+        if (Mathf.Abs(pos.x) < bounds.x)
+        {
+            if (Mathf.Abs(pos.y) < bounds.y)
+            {
+                GameObject flyerObject = ObjectPool.TInstance.GetFlyer(pos);
+            }
+        }
     }
 }

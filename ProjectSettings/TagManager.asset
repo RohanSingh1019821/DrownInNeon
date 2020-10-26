@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Seaweed
+  - GameManager
+  - InFrontOfPlayer
   layers:
   - Default
   - TransparentFX
@@ -15,11 +17,11 @@ TagManager:
   - 
   - 
   - Player
-  - Enemy
+  - Crab
   - Scenery
   - Bullet
   - BadBullet
-  - 
+  - Flyer
   - 
   - 
   - 
@@ -41,4 +43,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1026784243
+    locked: 0
+  - name: Kelp
+    uniqueID: 3290315277
+    locked: 0
+  - name: Player
+    uniqueID: 3769610001
+    locked: 0
+  - name: Enemies
+    uniqueID: 1200399265
+    locked: 0
+  - name: Effects
+    uniqueID: 815298965
+    locked: 0
+  - name: Foreground
+    uniqueID: 1390429933
     locked: 0
